@@ -3,118 +3,293 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Ayo Buang Sampah Pada Tempatnya 🤩</title>
+<title>Pesan Rahasia</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: Gagalin, sans-serif;
-        text-align: center;
-        background: linear-gradient(135deg, #2e7d32, #fdd835, #8d6e63);
-        color: white;
-        overflow: hidden;
-    }
 
-    h1 {
-        margin-top: 80px;
-        font-size: 2.5em;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
 
-    p {
-        font-size: 1.2em;
-    }
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background: linear-gradient(135deg,#6a11cb,#2575fc,#ff4ecd);
+    position:relative;
+}
 
-    .container {
-        margin-top: 50px;
-    }
+/* efek cahaya background */
+.glow{
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    filter:blur(90px);
+    animation:gerak 8s infinite alternate;
+}
 
-    button {
-        padding: 15px 30px;
-        font-size: 18px;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        margin: 10px;
-        transition: 0.3s;
-    }
+.glow:nth-child(1){
+    top:-100px;
+    left:-100px;
+}
 
-    #yesBtn {
-        background-color: #4caf50;
-        color: white;
-    }
+.glow:nth-child(2){
+    bottom:-100px;
+    right:-100px;
+}
 
-    #noBtn {
-        background-color: #d32f2f;
-        color: white;
-        position: absolute;
+@keyframes gerak{
+    from{
+        transform:translateY(0px);
     }
+    to{
+        transform:translateY(50px);
+    }
+}
 
-    #message {
-        margin-top: 30px;
-        font-size: 1.5em;
-        font-weight: bold;
-    }
+.container{
+    width:90%;
+    max-width:520px;
+    padding:35px;
+    border-radius:28px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(16px);
+    box-shadow:0 8px 35px rgba(0,0,0,0.35);
+    text-align:center;
+    color:white;
+    z-index:2;
+    animation:muncul 1s ease;
+}
 
-    .speaker {
-        margin-top: 30px;
-        cursor: pointer;
-        font-size: 40px;
+@keyframes muncul{
+    from{
+        opacity:0;
+        transform:translateY(40px);
     }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.lock{
+    font-size:65px;
+    margin-bottom:10px;
+    animation:goyang 2s infinite;
+}
+
+@keyframes goyang{
+    0%{transform:rotate(0deg);}
+    25%{transform:rotate(10deg);}
+    50%{transform:rotate(0deg);}
+    75%{transform:rotate(-10deg);}
+    100%{transform:rotate(0deg);}
+}
+
+h1{
+    font-size:2.4em;
+    margin-bottom:10px;
+}
+
+p{
+    opacity:0.9;
+    margin-bottom:20px;
+}
+
+textarea,
+input{
+    width:100%;
+    padding:15px;
+    margin:10px 0;
+    border:none;
+    border-radius:16px;
+    outline:none;
+    font-size:16px;
+    background:rgba(255,255,255,0.18);
+    color:white;
+}
+
+textarea::placeholder,
+input::placeholder{
+    color:#f1f1f1;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    border:none;
+    border-radius:16px;
+    background:linear-gradient(135deg,#ff4ecd,#7f5cff);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+    box-shadow:0 5px 20px rgba(255,255,255,0.3);
+}
+
+.output{
+    margin-top:18px;
+    padding:15px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.14);
+    min-height:70px;
+    word-wrap:break-word;
+    font-size:18px;
+    animation:fade 0.5s;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+.footer{
+    margin-top:18px;
+    font-size:13px;
+    opacity:0.8;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>🌱 Ayo Buang Sampah Pada Tempatnya! 🌱</h1>
-<p>Lingkungan bersih, hidup pun lebih sehat 🌍</p>
+<div class="glow"></div>
+<div class="glow"></div>
 
 <div class="container">
-    <button id="yesBtn">Mau</button>
-    <button id="noBtn">Tidak</button>
 
-    <div id="message"></div>
+    <div class="lock">🔐</div>
 
-    <div class="speaker" onclick="playVoice()">🔊</div>
+    <h1>Pesan Rahasia</h1>
+
+    <p>
+        Kirim pesan rahasia yang hanya bisa dibuka
+        dengan kata kunci spesial 💜
+    </p>
+
+    <textarea
+        id="messageInput"
+        rows="5"
+        placeholder="Tulis pesan rahasiamu..."
+    ></textarea>
+
+    <button onclick="encryptMessage()">
+        🔒 Rahasiakan Pesan
+    </button>
+
+    <div class="output" id="encryptedOutput">
+        Hasil pesan rahasia muncul di sini...
+    </div>
+
+    <input
+        type="password"
+        id="keyInput"
+        placeholder="Masukkan kata kunci"
+    >
+
+    <button onclick="decryptMessage()">
+        🔓 Buka Pesan
+    </button>
+
+    <div class="output" id="realMessage">
+        Pesan asli akan muncul di sini...
+    </div>
+
+    <div class="footer">
+        Kelompok 4 • Website Interaktif
+    </div>
+
 </div>
 
 <script>
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const message = document.getElementById("message");
 
-    // Tombol "Mau"🤩
-    yesBtn.onclick = () => {
-        message.innerHTML = "Keren! Kamu peduli lingkungan 🌿✨";
-        message.style.color = "#fff176";
-    };
+let originalMessage = "";
 
-    // Tombol "Tidak"😓 kabur
-    noBtn.onmouseover = () => {
-        moveButton();
-    };
+// kata kunci
+const secretKey = "i love you";
 
-    noBtn.onclick = () => {
-        moveButton();
-    };
+// ubah pesan jadi emoji
+function encryptMessage(){
 
-    function moveButton() {
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 50);
+    const input =
+    document.getElementById("messageInput").value;
 
-        noBtn.style.left = x + "px";
-        noBtn.style.top = y + "px";
+    originalMessage = input;
+
+    let encrypted = "";
+
+    const emojis = [
+        "💜","✨","🦋","🌸","🎀","💎",
+        "🌙","☁️","💫","🧸","🎵",
+        "⚡","🍓","🌈","🔥"
+    ];
+
+    for(let i = 0; i < input.length; i++){
+
+        encrypted +=
+        emojis[Math.floor(Math.random() * emojis.length)];
     }
 
-    // Speaker (Text to Speech)
-    function playVoice() {
-        const text = "Ayo buang sampah pada tempatnya. Lingkungan bersih, hidup sehat!";
-        const speech = new SpeechSynthesisUtterance(text);
-        speech.lang = "id-ID";
-        speech.pitch = 1;
-        speech.rate = 1;
+    document.getElementById("encryptedOutput")
+    .innerHTML = encrypted;
 
-        window.speechSynthesis.speak(speech);
+    speak("Pesan berhasil dirahasiakan");
+}
+
+// membuka pesan
+function decryptMessage(){
+
+    const key =
+    document.getElementById("keyInput").value;
+
+    if(key.toLowerCase() === secretKey){
+
+        document.getElementById("realMessage")
+        .innerHTML =
+        "💌 Pesan Asli:<br><br>" + originalMessage;
+
+        speak("Pesan berhasil dibuka");
+
+    }else{
+
+        document.getElementById("realMessage")
+        .innerHTML =
+        "❌ Kata kunci salah!";
+
+        speak("Kata kunci salah");
     }
+}
+
+// speaker suara
+function speak(text){
+
+    const speech =
+    new SpeechSynthesisUtterance(text);
+
+    speech.lang = "id-ID";
+    speech.rate = 1;
+
+    window.speechSynthesis.speak(speech);
+}
+
 </script>
 
 </body>
