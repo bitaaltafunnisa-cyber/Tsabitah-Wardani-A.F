@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pesan Rahasia</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 
 *{
@@ -15,53 +20,50 @@
 }
 
 body{
-    height:100vh;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     overflow:hidden;
-    background: linear-gradient(135deg,#6a11cb,#2575fc,#ff4ecd);
+    background:
+    linear-gradient(135deg,#5f2c82,#49a09d);
     position:relative;
 }
 
-/* efek cahaya background */
-.glow{
+/* background glow */
+.blur1,
+.blur2{
     position:absolute;
-    width:350px;
-    height:350px;
     border-radius:50%;
-    background:rgba(255,255,255,0.15);
     filter:blur(90px);
-    animation:gerak 8s infinite alternate;
+    opacity:0.5;
 }
 
-.glow:nth-child(1){
+.blur1{
+    width:300px;
+    height:300px;
+    background:#ff4ecd;
     top:-100px;
     left:-100px;
 }
 
-.glow:nth-child(2){
-    bottom:-100px;
-    right:-100px;
+.blur2{
+    width:250px;
+    height:250px;
+    background:#6c63ff;
+    bottom:-80px;
+    right:-80px;
 }
 
-@keyframes gerak{
-    from{
-        transform:translateY(0px);
-    }
-    to{
-        transform:translateY(50px);
-    }
-}
-
-.container{
+.card{
     width:90%;
     max-width:520px;
     padding:35px;
-    border-radius:28px;
+    border-radius:30px;
     background:rgba(255,255,255,0.12);
-    backdrop-filter:blur(16px);
-    box-shadow:0 8px 35px rgba(0,0,0,0.35);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 10px 40px rgba(0,0,0,0.35);
     text-align:center;
     color:white;
     z-index:2;
@@ -79,91 +81,89 @@ body{
     }
 }
 
-.lock{
-    font-size:65px;
+.icon{
+    font-size:70px;
     margin-bottom:10px;
-    animation:goyang 2s infinite;
+    animation:goyang 3s infinite;
 }
 
 @keyframes goyang{
-    0%{transform:rotate(0deg);}
-    25%{transform:rotate(10deg);}
-    50%{transform:rotate(0deg);}
-    75%{transform:rotate(-10deg);}
-    100%{transform:rotate(0deg);}
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0px);}
 }
 
 h1{
-    font-size:2.4em;
+    font-size:2.5rem;
     margin-bottom:10px;
 }
 
-p{
+.subtitle{
     opacity:0.9;
-    margin-bottom:20px;
+    margin-bottom:25px;
+    line-height:1.6;
 }
 
 textarea,
 input{
     width:100%;
-    padding:15px;
-    margin:10px 0;
+    padding:16px;
     border:none;
-    border-radius:16px;
     outline:none;
-    font-size:16px;
-    background:rgba(255,255,255,0.18);
+    border-radius:18px;
+    margin-top:14px;
+    background:rgba(255,255,255,0.15);
     color:white;
+    font-size:15px;
 }
 
 textarea::placeholder,
 input::placeholder{
-    color:#f1f1f1;
+    color:#f0f0f0;
 }
 
 button{
     width:100%;
-    padding:14px;
-    margin-top:10px;
+    padding:15px;
     border:none;
-    border-radius:16px;
+    border-radius:18px;
+    margin-top:16px;
     background:linear-gradient(135deg,#ff4ecd,#7f5cff);
     color:white;
     font-size:16px;
-    font-weight:bold;
+    font-weight:600;
     cursor:pointer;
     transition:0.3s;
 }
 
 button:hover{
-    transform:scale(1.03);
-    box-shadow:0 5px 20px rgba(255,255,255,0.3);
+    transform:scale(1.02);
+    box-shadow:0 8px 20px rgba(255,255,255,0.25);
 }
 
 .output{
     margin-top:18px;
-    padding:15px;
-    border-radius:16px;
-    background:rgba(255,255,255,0.14);
-    min-height:70px;
+    min-height:80px;
+    padding:18px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.12);
+    text-align:left;
     word-wrap:break-word;
-    font-size:18px;
-    animation:fade 0.5s;
+    line-height:1.7;
+    border:1px solid rgba(255,255,255,0.15);
 }
 
-@keyframes fade{
-    from{
-        opacity:0;
-    }
-    to{
-        opacity:1;
-    }
+.label{
+    margin-top:18px;
+    font-size:14px;
+    opacity:0.85;
+    text-align:left;
 }
 
 .footer{
-    margin-top:18px;
+    margin-top:20px;
     font-size:13px;
-    opacity:0.8;
+    opacity:0.7;
 }
 
 </style>
@@ -171,51 +171,54 @@ button:hover{
 
 <body>
 
-<div class="glow"></div>
-<div class="glow"></div>
+<div class="blur1"></div>
+<div class="blur2"></div>
 
-<div class="container">
+<div class="card">
 
-    <div class="lock">🔐</div>
+<div class="icon">🔐</div>
 
-    <h1>Pesan Rahasia</h1>
+<h1>Pesan Rahasia</h1>
 
-    <p>
-        Kirim pesan rahasia yang hanya bisa dibuka
-        dengan kata kunci spesial 💜
-    </p>
+<p class="subtitle">
+Ketik pesan rahasiamu lalu ubah menjadi kode agar tidak bisa dibaca orang lain ✨
+</p>
 
-    <textarea
-        id="messageInput"
-        rows="5"
-        placeholder="Tulis pesan rahasiamu..."
-    ></textarea>
+<textarea
+id="messageInput"
+rows="5"
+placeholder="Tulis pesan rahasiamu..."
+></textarea>
 
-    <button onclick="encryptMessage()">
-        🔒 Rahasiakan Pesan
-    </button>
+<button onclick="encryptMessage()">
+🔒 Rahasiakan Pesan
+</button>
 
-    <div class="output" id="encryptedOutput">
-        Hasil pesan rahasia muncul di sini...
-    </div>
+<div class="label">Kode Rahasia</div>
 
-    <input
-        type="password"
-        id="keyInput"
-        placeholder="Masukkan kata kunci"
-    >
+<div class="output" id="encryptedOutput">
+Kode rahasia akan muncul di sini...
+</div>
 
-    <button onclick="decryptMessage()">
-        🔓 Buka Pesan
-    </button>
+<input
+type="password"
+id="keyInput"
+placeholder="Masukkan kata kunci"
+>
 
-    <div class="output" id="realMessage">
-        Pesan asli akan muncul di sini...
-    </div>
+<button onclick="decryptMessage()">
+🔓 Buka Pesan
+</button>
 
-    <div class="footer">
-        Kelompok 4 • Website Interaktif
-    </div>
+<div class="label">Pesan Asli</div>
+
+<div class="output" id="realMessage">
+Pesan asli akan muncul di sini...
+</div>
+
+<div class="footer">
+Kelompok 4 • Website Interaktif Modern
+</div>
 
 </div>
 
@@ -223,33 +226,25 @@ button:hover{
 
 let originalMessage = "";
 
-// kata kunci
+// password
 const secretKey = "i love you";
 
-// ubah pesan jadi emoji
+// mengubah pesan jadi kode rahasia
 function encryptMessage(){
 
     const input =
     document.getElementById("messageInput").value;
 
-    originalMessage = input;
+    // encode pesan
+    originalMessage = btoa(input);
 
-    let encrypted = "";
-
-    const emojis = [
-        "💜","✨","🦋","🌸","🎀","💎",
-        "🌙","☁️","💫","🧸","🎵",
-        "⚡","🍓","🌈","🔥"
-    ];
-
-    for(let i = 0; i < input.length; i++){
-
-        encrypted +=
-        emojis[Math.floor(Math.random() * emojis.length)];
-    }
-
+    // tampilkan kode
     document.getElementById("encryptedOutput")
-    .innerHTML = encrypted;
+    .innerHTML =
+    "🔒 " + originalMessage;
+
+    // hapus pesan asli
+    document.getElementById("messageInput").value = "";
 
     speak("Pesan berhasil dirahasiakan");
 }
@@ -258,13 +253,13 @@ function encryptMessage(){
 function decryptMessage(){
 
     const key =
-    document.getElementById("keyInput").value;
+    document.getElementById("keyInput").value.toLowerCase();
 
-    if(key.toLowerCase() === secretKey){
+    if(key === secretKey){
 
         document.getElementById("realMessage")
         .innerHTML =
-        "💌 Pesan Asli:<br><br>" + originalMessage;
+        "💌 " + atob(originalMessage);
 
         speak("Pesan berhasil dibuka");
 
@@ -272,7 +267,7 @@ function decryptMessage(){
 
         document.getElementById("realMessage")
         .innerHTML =
-        "❌ Kata kunci salah!";
+        "❌ Kata kunci salah";
 
         speak("Kata kunci salah");
     }
