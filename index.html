@@ -6,10 +6,11 @@
 
 <title>Pesan Rahasia</title>
 
+<!-- FONT CANTIK -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,7 +18,6 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
 }
 
 body{
@@ -27,11 +27,12 @@ body{
     align-items:center;
     overflow:hidden;
     background:
-    linear-gradient(135deg,#0f172a,#312e81,#7c3aed,#ec4899);
+    linear-gradient(135deg,#141e30,#243b55,#5b247a,#ff6ec4);
     position:relative;
+    font-family:'Poppins',sans-serif;
 }
 
-/* glow background */
+/* background glow */
 body::before,
 body::after{
     content:'';
@@ -39,12 +40,12 @@ body::after{
     width:350px;
     height:350px;
     border-radius:50%;
-    filter:blur(90px);
-    opacity:0.45;
+    filter:blur(100px);
+    opacity:0.4;
 }
 
 body::before{
-    background:#8b5cf6;
+    background:#a855f7;
     top:-100px;
     left:-100px;
 }
@@ -57,13 +58,13 @@ body::after{
 
 .card{
     width:90%;
-    max-width:540px;
-    padding:38px;
-    border-radius:32px;
+    max-width:560px;
+    padding:40px;
+    border-radius:35px;
     background:rgba(255,255,255,0.10);
     backdrop-filter:blur(18px);
     border:1px solid rgba(255,255,255,0.15);
-    box-shadow:0 10px 40px rgba(0,0,0,0.35);
+    box-shadow:0 10px 45px rgba(0,0,0,0.4);
     text-align:center;
     color:white;
     z-index:2;
@@ -82,30 +83,31 @@ body::after{
 }
 
 .icon{
-    font-size:75px;
+    font-size:80px;
     margin-bottom:10px;
     animation:float 3s ease-in-out infinite;
 }
 
 @keyframes float{
     0%{transform:translateY(0px);}
-    50%{transform:translateY(-12px);}
+    50%{transform:translateY(-10px);}
     100%{transform:translateY(0px);}
 }
 
+/* FONT JUDUL CANTIK */
 h1{
-    font-size:2.8rem;
-    font-weight:700;
-    margin-bottom:10px;
-    background:linear-gradient(to right,#ffffff,#f9a8d4);
+    font-family:'Playfair Display',serif;
+    font-size:3rem;
+    margin-bottom:12px;
+    background:linear-gradient(to right,#ffffff,#ffc7f2);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
 .subtitle{
     opacity:0.9;
-    margin-bottom:25px;
-    line-height:1.7;
+    margin-bottom:28px;
+    line-height:1.8;
     font-size:15px;
 }
 
@@ -116,53 +118,55 @@ input{
     margin-top:15px;
     border:none;
     outline:none;
-    border-radius:20px;
-    background:rgba(255,255,255,0.12);
+    border-radius:22px;
+    background:rgba(255,255,255,0.13);
     color:white;
     font-size:15px;
     border:1px solid rgba(255,255,255,0.15);
     transition:0.3s;
+    font-family:'Poppins',sans-serif;
 }
 
 textarea:focus,
 input:focus{
-    border:1px solid #f472b6;
-    box-shadow:0 0 15px rgba(244,114,182,0.4);
+    border:1px solid #ff9de2;
+    box-shadow:0 0 18px rgba(255,157,226,0.4);
 }
 
 textarea::placeholder,
 input::placeholder{
-    color:#ececec;
+    color:#f3f3f3;
 }
 
 button{
     width:100%;
-    padding:16px;
+    padding:17px;
     margin-top:18px;
     border:none;
-    border-radius:20px;
+    border-radius:22px;
     background:
-    linear-gradient(135deg,#ec4899,#8b5cf6);
+    linear-gradient(135deg,#ff4ecd,#8b5cf6);
     color:white;
     font-size:16px;
     font-weight:600;
     cursor:pointer;
     transition:0.3s;
+    font-family:'Poppins',sans-serif;
 }
 
 button:hover{
     transform:translateY(-3px) scale(1.02);
-    box-shadow:0 10px 25px rgba(236,72,153,0.35);
+    box-shadow:0 10px 25px rgba(255,78,205,0.4);
 }
 
 .output{
     margin-top:18px;
-    min-height:85px;
+    min-height:90px;
     padding:18px;
     border-radius:22px;
     background:rgba(255,255,255,0.10);
     text-align:left;
-    line-height:1.8;
+    line-height:1.9;
     word-wrap:break-word;
     border:1px solid rgba(255,255,255,0.12);
     font-size:16px;
@@ -262,7 +266,6 @@ function encryptMessage(){
     const input =
     document.getElementById("messageInput").value;
 
-    // menyimpan pesan asli
     originalMessage = input;
 
     const emojis = [
@@ -279,18 +282,16 @@ function encryptMessage(){
         emojis[Math.floor(Math.random() * emojis.length)] + " ";
     }
 
-    // tampilkan emoji rahasia
     document.getElementById("encryptedOutput")
     .innerHTML =
     "🔒 " + secretEmoji;
 
-    // hapus pesan asli dari textarea
     document.getElementById("messageInput").value = "";
 
     speak("Pesan berhasil dirahasiakan");
 }
 
-// buka pesan asli
+// buka pesan
 function decryptMessage(){
 
     const key =
@@ -314,7 +315,7 @@ function decryptMessage(){
     }
 }
 
-// speaker suara
+// speaker
 function speak(text){
 
     const speech =
@@ -329,4 +330,4 @@ function speak(text){
 </script>
 
 </body>
-</html>        
+</html>
